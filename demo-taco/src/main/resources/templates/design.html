@@ -20,7 +20,7 @@
           th:errors="*{ingredients}">
       Ingredient Error
     </span>
-    <div class="ingredient-group" id="wraps">
+    <div class="ingredient-group" id="wrap">
       <h3>How do you want to wrap your taco (no blankets allowed)?</h3>
       <div th:each="ingredient : ${wrap}">
         <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
@@ -28,7 +28,7 @@
         <br/>
       </div>
     </div>
-    <div class="ingredient-group" id="proteins">
+    <div class="ingredient-group" id="protein">
       <h3>Pick your protein</h3>
       <div th:each="ingredient : ${protein}">
         <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
@@ -36,7 +36,7 @@
         <br/>
       </div>
     </div>
-    <div class="ingredient-group" id="cheeses">
+    <div class="ingredient-group" id="cheese">
       <h3>What type of Cheese would you like?</h3>
       <div th:each="ingredient : ${cheese}">
         <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
@@ -52,7 +52,7 @@
         <br/>
       </div>
     </div>
-    <div class="ingredient-group" id="sauces">
+    <div class="ingredient-group" id="sauce">
       <h3>What type of Sauce would you like?</h3>
       <div th:each="ingredient : ${sauce}">
         <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
