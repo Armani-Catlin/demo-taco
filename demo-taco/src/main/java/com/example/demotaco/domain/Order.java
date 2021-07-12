@@ -50,6 +50,9 @@ public class Order {
         this.tacos.add(taco);
     }
 
+    @ManyToOne
+    private User user;
+
     @PrePersist
     void createdAt () {
         this.createdAt = new Date();

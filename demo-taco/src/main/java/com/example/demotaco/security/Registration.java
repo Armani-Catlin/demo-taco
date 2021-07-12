@@ -2,6 +2,7 @@ package com.example.demotaco.security;
 
 import com.example.demotaco.domain.User;
 import lombok.Data;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Data
 public class Registration {
@@ -14,7 +15,8 @@ public class Registration {
     private String zip;
     private String phoneNumber;
 
-    public User convertedUser() {
-        return new User(username, password, fullname, street, city, state, zip, phoneNumber);
+    public User convertedUser(PasswordEncoder encoder) {
+        String hashPash = encoder.encode(password);
+        return new User(username, hashPash, fullname, street, city, state, zip, phoneNumber);
     }
 }

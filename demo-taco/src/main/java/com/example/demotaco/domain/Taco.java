@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,11 @@ public class Taco {
     @Size(min=2, message = "You must have at least 2 ingredients to make a taco")
 
     @ManyToMany(targetEntity = Ingredient.class)
-    private List<String> ingredients;
+    private List<Ingredient> ingredients = new ArrayList<>();
+
+    public void addIngredientToTaco (Ingredient ingredient) {
+        this.ingredients.add(ingredient);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,9 +1,9 @@
 package com.example.demotaco.web;
 
 import com.example.demotaco.data.UserRepository;
-import com.example.demotaco.domain.Order;
 import com.example.demotaco.security.Registration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 
     private UserRepository userRepository;
+    private final PasswordEncoder encoder;
 
     @Autowired
-    public HomeController(UserRepository userRepository) {
+    public HomeController(UserRepository userRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
     @ModelAttribute(name="newUser")
@@ -37,7 +39,7 @@ public class HomeController {
     @PostMapping("/register")
     public String registerForm(@ModelAttribute("newUser") Registration registration) {
         // todo: register validation
-        userRepository.save(registration.convertedUser());
+        userRepository.save(registration.convertedUser(encoder));
         return "redirect:/login";
     }
 }
